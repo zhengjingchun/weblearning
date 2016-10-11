@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Sprite-->
+    <meta charset="UTF-8">
+    <title>rate</title>
+    <script src="../../static/js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var index = 0;
+            var score = 0;
+            var star = $('.star');
+            var starList = $('.star').find('li');
+            var comment = ["差得太离谱，与卖家描述的严重不符，非常不满",
+                "(部分有破损，与卖家描述的不符，不满意",
+                "质量一般，没有卖家描述的那么好",
+                "质量不错，与卖家描述的基本一致，还是挺满意的",
+                "质量非常好，与卖家描述的完全一致，非常满意"]
+            starList.mouseenter(function () {
+                index = $('li').index(this);
+                lightStar(index);
+            });
+
+            starList.click(function () {
+                score = $('li').index(this);
+                lightStar(score);
+                $("#score_comment").show();
+                $("#num").html(score+1);
+                $("#comment").html(comment[score]);
+            });
+
+            star.mouseleave(function () {
+                lightStar(score);
+            });
+            
+            var lightStar =  function (index) {
+                starList.each(function (i,item) {
+                    if(i<=index){
+                        $(this).addClass('on');
+                    }else {
+                        $(this).removeClass('on');
+                    }
+                })
+            };
+
+        });
+
+        (function ($) {
+            $.fn.extend({
+                tips:function (index,comment) {
+                    var divHtml = "<div style=''><div></div></div>"
+                }
+            })
+        })(jQuery)
+    </script>
+    <style>
+        .star{
+            display: inline;
+            list-style-type: none;
+        }
+        .star li{
+            background: url("../../static/img/learning1/rate/star.png") no-repeat;
+            cursor: pointer;
+            width: 24px;
+            display: inline-block;
+            height: 19px;
+        }
+        .star li.on{
+            background-position: 0 -27px;
+            cursor: pointer;
+            width: 24px;
+        }
+        #comment_box{
+            border-radius: 3px;
+            width: 160px;
+            height: 80px;
+            border: 1px #999999 solid;
+            position: absolute;
+        }
+        #comment_box:before{
+            content: "\00a0";
+            width: 0;
+            height: 0;
+            display: block;
+            border-style: solid;
+            border-width: 8px;
+            border-color: transparent transparent #999999 transparent;
+            position:absolute;
+            z-index:999;
+            top:-16px;
+            left:30px
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center">
+        <div style="margin:auto;position: relative;line-height: 30px;">
+            <span>点击星星就能打分</span>
+            <ul class="star">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <span id="score_comment" style="display: none"><span style="color: red" class="score"><span id="num"></span>分</span>
+            (<span style="" id="comment"></span>)</span>
+            <div id="comment_box">
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

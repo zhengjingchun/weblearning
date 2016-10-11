@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--setInterval and clearInterval-->
+    <meta charset="UTF-8">
+    <title>countdown</title>
+    <script src="../../static/js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var timer = null;
+            $('#sec').val(30);
+            $('#min').val(1);
+
+            $('#save').click(function () {
+                timer = setInterval(updata,1000);
+                $('#save').hide();
+                $('#cancel').show();
+            });
+
+            $('#cancel').click(function(){
+                clearInterval(timer);
+                $('#cancel').hide();
+                $('#save').show();
+            });
+
+            var updata = function () {
+                var min = parseInt($('#min').val(),10);
+                var sec = parseInt($('#sec').val(),10);
+                var all = min * 60 + sec;
+                if (all > 0) {
+                    $('#sec').val(all % 60 -1);
+                    if (all % 60 == 0) {
+                        $('#min').val(parseInt($('#min').val(), 10) - 1);
+                        $('#sec').val(59);
+                    }
+                }else {
+                    clearInterval(timer);
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align: center">
+        <div style="margin: auto;background-color: black;padding: 20px;width: 200px;color: white">
+            <div style="margin: 20px 0">
+                <input type="number" min="0" id="min" style="width: 30px">分钟&nbsp;
+                <input type="number" min="0" id="sec" style="width: 30px">秒
+            </div>
+            <div>
+                <button id="cancel" style="background-color: red;border: none;width: 100%;display: none">取消</button>
+                <button id="save" style="background-color: green;border: none;width: 100%">提交</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
