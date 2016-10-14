@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--keycode-->
+    <meta charset="UTF-8">
+    <title>ctrlDiv</title>
+    <script src="../../static/js/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).keydown(function (e) {
+            console.log(e.keyCode);
+            var top = $("#ctrlBlock").offset().top;
+            var left = $("#ctrlBlock").offset().left;
+            var keycode = e.keyCode;
+            if(e.ctrlKey){
+                if (keycode==38){
+                    console.log("dfsfds");
+                }
+            }else if(keycode==38){
+                if (top > 0){
+                    $("#ctrlBlock").css("top", top - 10 + "px");
+                }
+            }else if(keycode==40){
+                if(top < screen.height){
+                    $("#ctrlBlock").css("top", top + 10 + "px");
+                }
+            }else if (keycode==39){
+                if(left < screen.width){
+                    $("#ctrlBlock").css("left", left + 10 + "px");
+                }
+            }else if(keycode==37){
+                if (left > 0){
+                    $("#ctrlBlock").css("left", left - 10 + "px");
+                }
+            }else{
+
+            }
+        })
+
+        ;(function ($) {
+            $.fn.extend({
+                change:function (param) {
+                    
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div style="padding: 5px">
+    <div style="border: 1px #999999 dashed;padding-left: 10px;width: 100%;background-color: #eeeeee;color: cadetblue;position: relative">
+        <p>红色方块为键盘操作区域，你可以进行如下操作：</p><br/>
+        <p>上：↑   下：↓   左：←   右：→</p><br/>
+        <p>Ctrl + 1 : 背景变为绿色</p>
+        <p>Ctrl + 2 : 背景变为黄色</p>
+        <p>Ctrl + 3 : 背景变为蓝色</p>
+        <p>Ctrl + ↑ : 放大</p>
+        <p>Ctrl + ↓ : 缩小</p>
+    </div>
+    <div id="ctrlBlock" style="width: 80px;height: 80px;background-color: red;position: absolute;top:150px;left: 500px;"></div>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--Sprite-->
+    <!--Sprite,loop-->
     <meta charset="UTF-8">
     <title>rate</title>
     <script src="../../static/js/jquery-1.11.1.min.js"></script>
@@ -12,30 +12,35 @@
             var star = $('.star');
             var starList = $('.star').find('li');
             var comment = ["差得太离谱，与卖家描述的严重不符，非常不满",
-                "(部分有破损，与卖家描述的不符，不满意",
+                "部分有破损，与卖家描述的不符，不满意",
                 "质量一般，没有卖家描述的那么好",
                 "质量不错，与卖家描述的基本一致，还是挺满意的",
-                "质量非常好，与卖家描述的完全一致，非常满意"]
+                "质量非常好，与卖家描述的完全一致，非常满意"];
             starList.mouseenter(function () {
                 index = $('li').index(this);
-                lightStar(index);
+                lightStar(index+1);
+                var left = 125 + index * 32;
+                $("#comment_box").css("left", left + "px").show();
+                $("#comment_box_num").html(index+1);
+                $("#comment_box_comment").html(comment[index]);
             });
 
             starList.click(function () {
-                score = $('li').index(this);
+                score = $('li').index(this) + 1;
                 lightStar(score);
                 $("#score_comment").show();
-                $("#num").html(score+1);
-                $("#comment").html(comment[score]);
+                $("#num").html(score);
+                $("#comment").html(comment[score-1]);
             });
 
             star.mouseleave(function () {
                 lightStar(score);
+                $("#comment_box").hide();
             });
             
             var lightStar =  function (index) {
                 starList.each(function (i,item) {
-                    if(i<=index){
+                    if(i<index){
                         $(this).addClass('on');
                     }else {
                         $(this).removeClass('on');
@@ -44,14 +49,6 @@
             };
 
         });
-
-        (function ($) {
-            $.fn.extend({
-                tips:function (index,comment) {
-                    var divHtml = "<div style=''><div></div></div>"
-                }
-            })
-        })(jQuery)
     </script>
     <style>
         .star{
@@ -64,6 +61,8 @@
             width: 24px;
             display: inline-block;
             height: 19px;
+            line-height: 33px;
+            vertical-align: middle;
         }
         .star li.on{
             background-position: 0 -27px;
@@ -73,9 +72,12 @@
         #comment_box{
             border-radius: 3px;
             width: 160px;
-            height: 80px;
-            border: 1px #999999 solid;
+            border: 1px #eeeeee solid;
             position: absolute;
+            background-color: #eeeeee;
+            top:40px;
+            left:125px;
+            padding: 5px 10px;
         }
         #comment_box:before{
             content: "\00a0";
@@ -84,7 +86,7 @@
             display: block;
             border-style: solid;
             border-width: 8px;
-            border-color: transparent transparent #999999 transparent;
+            border-color: transparent transparent #eeeeee transparent;
             position:absolute;
             z-index:999;
             top:-16px;
@@ -95,9 +97,9 @@
 <body>
     <div style="text-align: center">
         <div style="margin:auto;position: relative;line-height: 30px;width: 800px">
-            <div style="display: inline-block">
-                <span style="font-size: 12pt">点击星星就能打分</span>
-                <ul class="star">
+            <div style="display: inline-block;float:left">
+                <span style="font-size: 11pt;color:grey;font-family: 'Microsoft JhengHei';line-height: 33px;vertical-align: middle">点击星星就能打分</span>
+                <ul class="star" style="padding: 0px;margin: 20px">
                     <li></li>
                     <li></li>
                     <li></li>
@@ -106,10 +108,12 @@
                 </ul>
             </div>
 
-            <span id="score_comment" style="display: none"><span style="color: red" class="score"><span id="num"></span>分</span>
-            (<span style="" id="comment"></span>)</span>
-            <div id="comment_box" style="display: none">
-
+            <span id="score_comment" style="display: none;float: left;font-family: 'Microsoft JhengHei';font-size: 11pt;line-height: 33px;vertical-align: middle">
+                <span style="color: red" class="score"><span id="num"></span>分</span>
+                (<span style="" id="comment"></span>)</span>
+            <div id="comment_box" style="display: none;font-size: 11pt;color:grey;font-family: 'Microsoft JhengHei';text-align: left">
+                <div><span style="color: red" class="score"><span id="comment_box_num"></span>分</span></div>
+                <div><span id="comment_box_comment"</span></div>
             </div>
         </div>
     </div>
