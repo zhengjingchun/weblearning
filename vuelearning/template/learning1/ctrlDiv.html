@@ -7,13 +7,20 @@
     <script src="../../static/js/jquery-1.11.1.min.js"></script>
     <script>
         $(document).keydown(function (e) {
-            console.log(e.keyCode);
             var top = $("#ctrlBlock").offset().top;
             var left = $("#ctrlBlock").offset().left;
             var keycode = e.keyCode;
             if(e.ctrlKey){
                 if (keycode==38){
-                    console.log("dfsfds");
+                    $("#ctrlBlock").css({"width":"+=10","height":"+=10"});
+                }else if (keycode==40){
+                    $("#ctrlBlock").css({"width":"-=10","height":"-=10"});
+                }else if (keycode==71){
+                    $("#ctrlBlock").css("background-color","green");
+                }else if (keycode==89){
+                    $("#ctrlBlock").css("background-color","yellow");
+                }else if (keycode==66){
+                    $("#ctrlBlock").css("background-color","blue");
                 }
             }else if(keycode==38){
                 if (top > 0){
@@ -36,13 +43,6 @@
             }
         })
 
-        ;(function ($) {
-            $.fn.extend({
-                change:function (param) {
-                    
-                }
-            })
-        })
     </script>
 </head>
 <body>
@@ -50,9 +50,9 @@
     <div style="border: 1px #999999 dashed;padding-left: 10px;width: 100%;background-color: #eeeeee;color: cadetblue;position: relative">
         <p>红色方块为键盘操作区域，你可以进行如下操作：</p><br/>
         <p>上：↑   下：↓   左：←   右：→</p><br/>
-        <p>Ctrl + 1 : 背景变为绿色</p>
-        <p>Ctrl + 2 : 背景变为黄色</p>
-        <p>Ctrl + 3 : 背景变为蓝色</p>
+        <p>Ctrl + g : 背景变为绿色</p>
+        <p>Ctrl + y : 背景变为黄色</p>
+        <p>Ctrl + b : 背景变为蓝色</p>
         <p>Ctrl + ↑ : 放大</p>
         <p>Ctrl + ↓ : 缩小</p>
     </div>
