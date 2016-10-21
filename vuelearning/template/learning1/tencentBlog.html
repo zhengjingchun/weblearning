@@ -4,12 +4,61 @@
     <meta charset="UTF-8">
     <title>tencentBlog</title>
     <script src="../../static/js/jquery-1.11.1.min.js"></script>
-    <link href="../../static/css/style.css" type="text/css">
+    <link href="../../static/css/style.css" rel="stylesheet" type="text/css" />
 </head>
-<body style="margin: 0px;height: 100%">
-<div class="contain" style="background-color: #555555;padding-top: 10px;height: 100%">
-    <div style="width: 800px;margin: auto;border-radius: 3px;background-color: whitesmoke;padding: 5px">
-        <h2>来，说说你在做什么，想什么</h2>
+<script>
+    $(document).ready(function () {
+        $('.chooseImg li img').click(function () {
+            $('.chooseImg').each(function (i,e) {
+                $(e).find('.op').removeClass('op');
+            });
+            $(this).addClass('op');
+        })
+    });
+</script>
+<style>
+    .block{
+        width: 550px;margin: auto;padding: 15px;
+    }
+    .borderTopRadius{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .borderBottomRadius{
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .toTop{
+        background-image: linear-gradient(to top,whitesmoke,white) !important;
+    }
+
+    .chooseImg{  list-style: none;display: inline;padding: 0px;  }
+    .chooseImg li{  display: inline  }
+    .chooseImg li img{height: 34px;width: 36px;margin: 0px 5px;vertical-align: bottom;opacity: 0.4;cursor: pointer}
+
+    .op{
+        opacity: 1 !important;
+    }
+
+</style>
+<body style="margin: 0px;height: 100%;background-color: #555555;">
+<div style="padding-top: 10px;height: 100%">
+    <form class="block toTop borderTopRadius">
+        <h3 style="font-family: 'Microsoft YaHei';font-weight: 400;margin: 0px 0px 10px">来，说说你在做什么，想什么</h3>
+        <input type="text" style="height:30px;vertical-align: bottom;padding:0 10px"/>
+        <ul class="chooseImg">
+            <li><img class="op"/></li>
+            <li><img/></li>
+            <li><img/></li>
+            <li><img/></li>
+            <li><img/></li>
+            <li><img/></li>
+        </ul>
+    </form>
+    <div class="block borderBottomRadius" style="background-color: white;">
+        <a href="http://https://www.jd.com/">test</a>
     </div>
 </div>
 </body>
