@@ -10,3 +10,16 @@ input,textarea{
   box-shadow: 0px 1px 1px 1px whitesmoke inset;
 }
 
+.boardcast_btn{
+  border-radius: 4px;
+  background-image: linear-gradient(to top,#97C866,#84C716);
+  border: 1px solid #94C859;
+  padding: 5px 25px;
+  font-size: 20px;
+  color: white;
+}
+
+.boardcast_btn:hover{
+  background-image: linear-gradient(to top,#84C716,#97C866);
+}
+
