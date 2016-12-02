@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>d3</title>
+    <script src="../../static/js/jquery-1.11.1.min.js"></script>
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3.tip.js"></script>
+    <script>
+        $(document).ready(function () {
+            var dataset = [5, 10, 15, 20, 25,5, 10, 15,5, 10, 15, 20, 25, 20, 25];
+            var width = 1000;
+            var height = 600;
+
+            var svg = d3.select('#d3div').append('svg').attr('width',width).attr('height',height);
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                //                    .attr("class", "bar")
+                .attr("x", function (d,index) {
+                    return index * (width / dataset.length);
+                })
+                .attr("y", function (d,index) {
+                    return height-d*5;
+                })
+                .attr("height", function (d) {
+                    var barHeight = d * 5;  //Scale up by factor of 5
+                    return barHeight;
+                })
+                .attr("width", function (d) {
+                    return width / dataset.length - 2;
+                })
+                .attr('fill', 'teal')
+                .text(function (d) {
+                    return d;
+                });
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append('text')
+                .text(function (d) {
+                    return d;
+                })
+                .attr("x", function (d, i) {
+                    return i * (width / dataset.length) + 5;
+                })
+                .attr("y", function (d) {
+                    return height - (d * 5) +15;
+                })
+                .attr("font-family", "sans-serif")
+                .attr("font-size", "11px")
+                .attr("fill", "white");;
+        });
+    </script>
+    <style>
+        .bar{
+            display: inline-block;
+            width: 20px;
+            height: 75px;   /* We'll override this later */
+            background-color: teal;margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+<div id="d3div">
+
+</div>
+</body>
+</html>

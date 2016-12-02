@@ -8,12 +8,32 @@
 </head>
 <script>
     $(document).ready(function () {
+        var blogList = [{img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'仿腾讯微博效果，欢迎大家测试！',time:'07月03日 20:19'},
+            {img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'增加了输入字符检测功能，英文/半角为半个字符，汉字/全角为一个字符。',time:'07月03日 20:30'},
+            {img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'增加了记录广播时间的功能。',time:'07月04日 16:55'},
+            {img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'新增选择头像功能。',time:'07月04日 12:08'},
+            {img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'新增Ctrl+Enter快捷键发送广播。',time:'07月05日 20:20'},
+            {img:'../../static/img/learning1/opacity/1.jpg',name:'日丶久生情',content:'新增删除广播功能。',time:'07月05日 15:14'}];
+
+        var renderBlog = function (bloglist) {
+            $('#blogView').empty();
+            var list = [];
+            $.each(bloglist, function (index, item) {
+                list.push('<li><div class="head inline"> <img src="'+item.img+'"></div>' +
+                        '<div class="inline contain"><div class="name"><a href="javascript:;">'+item.name+'</a>:<span class="message">'+item.content+'</span></div><div class="time"><font>'+ item.time +'</font></div></div></li>')
+            });
+            $('#blogView').append(list);
+        };
+        renderBlog(blogList);
+
         $('.chooseImg li img').click(function () {
             $('.chooseImg').each(function (i,e) {
                 $(e).find('.op').removeClass('op');
             });
             $(this).addClass('op');
-        })
+        });
+
+
     });
 </script>
 <style>
@@ -40,6 +60,38 @@
 
     .op{
         opacity: 1 !important;
+        border-color: red;
+    }
+
+    #blogView{
+        list-style: none;
+        padding: 0px;
+    }
+
+    #blogView li{
+        border-bottom: dashed 1px #ddd;
+        height: 80px;
+    }
+    #blogView li:hover{
+
+    }
+
+    #blogView .inline{
+        display: inline-block;
+    }
+    #blogView .head{
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+    }
+    #blogView .head img{
+        width: 98%;
+        border: solid 1px #ddd;
+    }
+    #blogView .contain{
+        text-align: left;
+        width: 80%;
+        padding: 5px;
     }
 
 </style>
@@ -63,7 +115,27 @@
         </div>
     </form>
     <div class="block borderBottomRadius" style="background-color: white;">
-        <a href="http://https://www.jd.com/">test</a>
+        <div style="background-color: #888888;padding: 10px 0 0 10px">
+            <span  style="background-color: white;border: none">大家都在说</span>
+        </div>
+        <ul id="blogView">
+            <li>
+                <div>
+                    <img>
+                </div>
+                <div>
+                    <div class="name">
+                        <a href="javascript:;"></a>
+                    </div>
+                    <div class="message">
+                        <span></span>
+                    </div>
+                    <div class="time">
+                        <font></font>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
 </body>
